@@ -1,0 +1,115 @@
+<div class="row">
+
+  <!-- Employee List -->
+  <div class="col-8">
+    <div class="card">
+
+      <div class="card-header bg-success text-white">
+        <h1 class="h4 mb-0">Employee List</h1>
+      </div>
+
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Sl No</th>
+              <th>Name</th>
+              <th>Contact Number</th>
+              <th>Email ID</th>
+              <th>Action</th>
+
+            </tr>
+          </thead>
+          <tbody>
+          @for (item of employeelist; track $index) {
+            <tr>
+              <td>{{$index+1}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.phonenumber}}</td>
+              <td>{{item.emailid}}</td>
+              <td class="text-center">
+                <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>
+                <button class="btn btn-danger mx-2" (click)="onDelete(item.empid)">Delete</button>
+              </td>
+          
+            </tr>
+          }
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Add Employee Form -->
+  <div class="col-4">
+    <div class="card">
+
+      <div class="card-header bg-success text-white">
+        New Employee
+      </div>
+
+      <div class="card-body">
+        <form [formGroup]="employeeForm">
+        <div class="row gy-3">
+
+          <div class="col-12">
+            <label>Name</label>
+            <input type="text" formControlName="name" class="form-control">
+          </div>
+
+          <div class="col-6">
+            <label>City</label>
+            <input type="text" formControlName="city" class="form-control">
+          </div>
+
+          <div class="col-6">
+            <label>State</label>
+            <input type="text" formControlName="state" class="form-control">
+          </div>
+
+          <div class="col-6">
+            <label>Email ID</label>
+            <input type="email" formControlName="emailid" class="form-control">
+          </div>
+
+          <div class="col-6">
+            <label>Phone Number</label>
+            <input type="text" formControlName="phonenumber" class="form-control">
+          </div>
+
+          <div class="col-12">
+            <label>Address</label>
+            <textarea formControlName="address" class="form-control"></textarea>
+          </div>
+
+          <div class="col-6">
+            <label>Employee ID</label>
+            <input type="text" formControlName="empid" class="form-control">
+          </div>
+
+          <div class="col-6">
+            <label>Pincode</label>
+            <input type="text" formControlName="pincode" class="form-control">
+          </div>
+<div class="col-6 text-center">
+            <button class="btn btn-secondary w-100">Reset</button>
+          </div>
+          <div class="col-6 text-center">
+            @if (employeeForm.controls['empid'].value == 0) {
+            <button class="btn btn-success w-100" (click)="onsave()">Save Employee</button>
+           }
+            @else {
+                <button class="btn btn-warning w-100" (click)="onUpdate()">Update Employee</button>
+                  }
+
+          </div>
+        </div>
+        </form>
+      </div>
+      
+        </div>
+      </div>
+
+    </div>
+
